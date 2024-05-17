@@ -2,7 +2,7 @@
 ### Instructions
 1. **Clone the Repository**
     ```sh
-    git clone <repo_url>
+    git clone <[repo_url](https://github.com/ijaytelgote/BeyondChats_assignment.git)>
     ```
 2. **Install Dependencies**
     ```sh
