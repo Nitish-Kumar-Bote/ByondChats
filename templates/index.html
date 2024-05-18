@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .citation {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .citation p {
+            margin: 0;
+        }
+        .citation-link {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Citations</h1>
+        <div id="citations"></div>
+    </div>
+    <script>
+        function fetchCitations() {
+            fetch('/citations')
+                .then(response => response.json())
+                .then(data => {
+                    const citationsContainer = document.getElementById('citations');
+                    citationsContainer.innerHTML = '';
+                    data.forEach((citations, index) => {
+                        const citationDiv = document.createElement('div');
+                        citationDiv.classList.add('citation');
+                        const citationTitle = document.createElement('h3');
+                        citationTitle.textContent = `Citations for Response ${index + 1}`;
+                        citationDiv.appendChild(citationTitle);
+                        if (citations.length > 0) {
+                            citations.forEach(citation => {
+                                const citationPara = document.createElement('p');
+                                if (citation.link) {
+                                    const citationLink = document.createElement('a');
+                                    citationLink.href = citation.link;
+                                    citationLink.textContent = `Source ID: ${citation.id}`;
+                                    citationLink.classList.add('citation-link');
+                                    citationPara.appendChild(citationLink);
+                                } else {
+                                    citationPara.textContent = `Source ID: ${citation.id}`;
+                                }
+                                citationDiv.appendChild(citationPara);
+                            });
+                        } else {
+                            const noCitationsPara = document.createElement('p');
+                            noCitationsPara.textContent = 'No citations found for this response.';
+                            citationDiv.appendChild(noCitationsPara);
+                        }
+                        citationsContainer.appendChild(citationDiv);
+                    });
+                })
+                .catch(error => console.error('Error fetching citations:', error));
+        }
+        document.addEventListener('DOMContentLoaded', fetchCitations);
+    </script>
+</body>
+</html>
