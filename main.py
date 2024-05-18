@@ -32,7 +32,7 @@ def identify_sources_for_response(response_text, sources):
             if is_text_similar(response_text.lower(), source["context"].lower()):
                 citations.append({"id": source["id"], "link": source.get("link", "")})
     return citations
-
+g
 def extract_citations(data):
     all_citations = []
     for item in data:
