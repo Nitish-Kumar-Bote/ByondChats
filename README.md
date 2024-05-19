@@ -2,7 +2,7 @@
 ### Instructions
 1. **Clone the Repository**
     ```sh
-    git clone https://github.com/ijaytelgote/BeyondChats_assignment.git
+    git clone git@github.com:Nitish-Kumar-Bote/ByondChats.git
     ```
 2. **Install Dependencies**
     ```sh
@@ -18,5 +18,3 @@
     ```
     Navigate to `http://127.0.0.1:5000/citations` in your web browser to view the citations.
 
-Credit: Jay Telgote
-LinkedIn: https://www.linkedin.com/in/ijaytelgote/
